@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
+import { Archivo } from 'next/font/google'
 import "./globals.css";
+
+const archivo = Archivo({
+  display: "swap",
+  weight: "variable",
+  subsets: ['latin'],
+  variable: '--font-archivo'
+})
+
 
 export const metadata: Metadata = {
   title: "Minimal Single Page Portfolio",
-  description: "Created with Frontend Tribe",
+  description: "Created with love",
 };
 
 export default function RootLayout({
@@ -13,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={"antialiased"}>{children}</body>
+      <body className={`antialiased bg-stone-200 text-stone-900 ${archivo.variable} font-sans`}>{children}</body>
     </html>
   );
 }
