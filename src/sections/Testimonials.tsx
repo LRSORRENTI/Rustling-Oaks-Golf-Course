@@ -40,6 +40,9 @@ const testimonials = [
 ];
 
 const Testimonials: FC = () => {
+
+  const testimonialIndex = 0;
+
   return ( <section className="section">
     <h2 className="text-4xl flex flex-col overflow-hidden">
       <span className="whitespace-nowrap">
@@ -51,7 +54,7 @@ const Testimonials: FC = () => {
     </h2>
     <div className="container">
       <div className="mt-20">
-        {testimonials.map(({name, company, role, quote, image, imagePositionY}) => (
+        {testimonials.map(({name, company, role, quote, image, imagePositionY}, index ) => index === testimonialIndex && (
             <div key={name}>
                 <div className="aspect-square">
                   <Image src={image} alt={name} className="object-cover size-full" style={{objectPosition: `50% ${imagePositionY * 100}%`}}/>
@@ -64,18 +67,18 @@ const Testimonials: FC = () => {
                   </span>
                   <span>&rdquo;</span>
                   </div>
-                  <cite>{name}, {role} at {company}</cite>
+                  <cite className="mt-4 not-italic block ">{name}, {role} at {company}</cite>
                 </blockquote>
             </div>
         ))}
       </div>
-      <div>
-        <button>
+      <div className="flex gap-4 mt-6">
+        <button className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
            </svg>
         </button>
-        <button>
+        <button className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
           </svg>
