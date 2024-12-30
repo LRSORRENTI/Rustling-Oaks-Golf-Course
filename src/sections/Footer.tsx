@@ -27,15 +27,19 @@ const navItems = [
 ]
 
 const Footer: FC = () => {
-  return <footer className="bg-stone-900 text-white ">
+  return (
+  <footer className="bg-stone-900 text-white ">
     <div className="container">
       <div className="section">
-      <div className="flex items-center gap-3 ">
-        <div className="size-3 rounded-full bg-green-400"></div>
+        <div className="flex items-center gap-3 ">
+          <div className="size-3 rounded-full bg-green-400">
+          </div>
         <span className="uppercase">One spot available for next nonth</span>
       </div>
-      <h2 className="text-4xl mt-8 font-extralight">Enough talk let's make something great together</h2>
-         <Button variant="secondary" 
+      <div className="grid md:grid-cols-3 md:items-center">
+        <div className="md:col-span-2">
+      <h2 className="text-4xl md:text-7xl lg:text-8xl mt-8 font-extralight">Enough talk let's make something great together</h2>
+        <Button variant="secondary" 
          className="mt-8"
          iconAfter={
               <svg 
@@ -50,8 +54,10 @@ const Footer: FC = () => {
               </svg>
           }>
             <p className="pt-[0.6rem]">info@test.com</p>
-          </Button>
-      <nav className="flex flex-col gap-8 mt-16">
+        </Button>
+        </div>
+        <div>
+      <nav className="flex flex-col md:items-end gap-8 mt-16 md:mt-0">
         {navItems.map(({ href, label}) => (
           <a href={href} 
              key={label}>
@@ -61,9 +67,12 @@ const Footer: FC = () => {
         ))}
       </nav>
       </div>
+      </div>
+      </div>
       <p className="py-16 text-white/30 text-sm">Copyright &copy; GoCenter &bull; All rights reserved</p>
     </div>
   </footer>
+  )
 };
 
 export default Footer;
