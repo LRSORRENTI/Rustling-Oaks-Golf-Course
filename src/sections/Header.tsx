@@ -122,16 +122,19 @@ const Header: FC = () => {
       <div className="fixed top-0 left-0 w-full h-0 overflow-hidden  bg-stone-900 " ref={navScope}>
     <nav className="mt-20 flex flex-col">
       {navItems.map(({label, href}) => (
-        <a href={href} key={label} className="text-stone-200 border-t  last:border-b border-stone-800 py-8">
+        <a href={href} key={label} className="text-stone-200 border-t  last:border-b border-stone-800 py-8 group/nav-item relative isolate "
+        onClick={() => setIsOpen(false)}>
           <div className="container !max-w-full flex items-center justify-between">
-        <span className="text-3xl">
+        <span className="text-3xl group-hover/nav-item:pl-4 transition-all duration-500">
           {label}
         </span>
-           <svg xmlns="http://www.w3.org/2000/svg"   fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+           <svg xmlns="http://www.w3.org/2000/svg"   fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 ">
             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
             </svg>
             </div>
+          <div className="absolute w-full h-0 bg-stone-800 group-hover/nav-item:h-full transition-all duration-500 bottom-0 -z-10">
 
+          </div>
         </a>
       ))}
     </nav>
