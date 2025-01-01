@@ -139,7 +139,7 @@ const Header: FC = () => {
 
   return (
     <header>
-      <div className="fixed top-0 left-0 w-full h-0 overflow-hidden  bg-stone-900 " ref={navScope}>
+      <div className="fixed top-0 left-0 w-full h-0 overflow-hidden  bg-stone-900 z-10"  ref={navScope}>
     <nav className="mt-20 flex flex-col">
       {navItems.map(({label, href}) => (
         <a href={href} key={label} className="text-stone-200 border-t  last:border-b border-stone-800 py-8 group/nav-item relative isolate "
@@ -160,7 +160,7 @@ const Header: FC = () => {
     </nav>
 
       </div>
-      <div className="fixed top-0 left-0 w-full mix-blend-difference backdrop-blur-md">
+      <div className="fixed top-0 left-0 w-full mix-blend-difference backdrop-blur-md z-10">
         <div className="container !max-w-full">
           <div className="flex justify-between h-20 items-center">
             <div>
@@ -170,7 +170,7 @@ const Header: FC = () => {
           </div>
         </div>
       </div>
-    <div className="fixed top-0 left-0 w-full">
+    <div className="fixed top-0 left-0 w-full z-10">
       <div className="container !max-w-full">
         <div className="flex justify-end h-20 items-center">
           <div className="flex items-center gap-4">
