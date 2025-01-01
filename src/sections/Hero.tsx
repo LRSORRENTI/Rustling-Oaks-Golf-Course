@@ -30,7 +30,8 @@ const Hero: FC = () => {
         });
   }, []);
 
-  return <section>
+  return (
+  <section>
     <div className="grid md:grid-cols-12 md:h-screen items-stretch">
       <div className="md:col-span-7 flex flex-col justify-center">
       <div className="container !max-w-full ">
@@ -42,6 +43,11 @@ const Hero: FC = () => {
             Crafting digital experiences through code and creative design
           </motion.h1>
           <div className="flex flex-col md:flex-row md:items-center mt-10 items-start gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: "100%"}}
+            animate={{ opacity: 1, y: 0}}
+            transition={{ duration: 0.5, delay: 1.75}}
+          >
           <Button variant="secondary" iconAfter={
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 mt-[0.56rem]">
             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
@@ -49,9 +55,17 @@ const Hero: FC = () => {
           }>
             <p className="pt-2">View My Work</p>
           </Button>
+          </motion.div>
+          <motion.div 
+                 initial={{ opacity: 0, y: "100%"}}
+                 animate={{ opacity: 1, y: 0}}
+                 transition={{ duration: 0.5, delay: 2}}
+          
+          >
           <Button variant="text">
             Let's Talk
           </Button>
+          </motion.div>
         </div>
         </div>
       </div>
@@ -62,6 +76,7 @@ const Hero: FC = () => {
       </div>
     </div>
   </section>
+  )
 };
 
 export default Hero;
