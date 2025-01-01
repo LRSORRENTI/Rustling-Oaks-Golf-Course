@@ -8,6 +8,7 @@ import heroImage from "@/assets/images/hero-image.jpg";
 
 import SplitType from "split-type";
 import { useAnimate, motion, stagger} from "motion/react";
+import { div } from "motion/react-client";
 
 
 const Hero: FC = () => {
@@ -49,11 +50,26 @@ const Hero: FC = () => {
             transition={{ duration: 0.5, delay: 1.75}}
           >
           <Button variant="secondary" iconAfter={
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 mt-[0.56rem]">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
-            </svg>
+            <div className="overflow-hidden size-5">
+              <div className="h-5 w-10 flex group-hover/button:-translate-x-1/2 transition-transform duration-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  strokeWidth="1.5" stroke="currentColor" className="size-5">
+                  <path 
+                  strokeLinecap="round" strokeLinejoin="round" 
+                  d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  strokeWidth="1.5" stroke="currentColor" className="size-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                  </svg>
+              </div>
+            </div>
           }>
-            <p className="pt-2">View My Work</p>
+            <p className="">View My Work</p>
           </Button>
           </motion.div>
           <motion.div 
