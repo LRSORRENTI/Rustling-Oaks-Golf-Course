@@ -36,8 +36,8 @@ const Intro: FC = () => {
 
   return ( 
   <section className="section mt-12 md:mt-16 lg:mt-20 " id="intro" ref={scope}>
-    <div className="container ">
-      <h2 className="text-5xl  pl-0  md:text-7xl lg:text-8xl lg:w-[80%] ">
+    <div className="container">
+      <h2 className="text-4xl md:text-7xl lg:text-8xl lg:w-[80%]">
         Building beautiful websites with modern tools and thoughtful design to help your business grow and stand out online!
       </h2>
     </div>
