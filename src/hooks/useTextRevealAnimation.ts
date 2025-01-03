@@ -18,12 +18,26 @@ const useTextRevealAnimation = () => {
         transform: 'translateY(0)',
     }, {
         duration: 0.5,
-        delay: stagger(0.2)
+        delay: stagger(0.15)
     }
 )}
+
+const exitAnnimation = () => { 
+    return animate(scope.current.querySelectorAll('.word'), {
+        transform: 'translateY(100%)',
+    }, {
+        duration: 0.3,
+        delay: stagger(-0.025, {
+            startDelay: scope.current.querySelectorAll('.word').length * 0.025
+        })
+    }
+)
+}
+
     return {
         scope,
-        entranceAnimation
+        entranceAnimation,
+        exitAnnimation,
         };
 }
 

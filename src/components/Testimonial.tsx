@@ -1,12 +1,13 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+
 import Image from "next/image";
+
 import { HTMLAttributes, useEffect } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-import SplitType from "split-type";
+import { usePresence } from "motion/react";
 
-import { useAnimate } from "motion/react";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 const Testimonial = (props: {
@@ -21,11 +22,21 @@ const Testimonial = (props: {
 
 const {quote, name, role, company, image, imagePositionY, className, ...rest} = props;
 
-const { scope: quoteScope, entranceAnimation: quoteAnimate } = useTextRevealAnimation();
+const { scope: quoteScope, entranceAnimation: quoteEntranceAnimation } = useTextRevealAnimation();
 
-const [citeScope, citeAnimate] = useAnimate();
+const { scope: citeScope, entranceAnimation: citeEntranceAnimation } = useTextRevealAnimation();
 
+const [isPresent, safeToRemove] = usePresence();
 
+useEffect(() => { 
+    if(isPresent) {
+        quoteEntranceAnimation().then(() => {
+            citeEntranceAnimation();
+        });
+    } else {
+        
+    }
+}, []);
 
 return (
           <div  className={twMerge("grid md:grid-cols-5 md:gap-8 lg:gap-16 md:items-center", className)}
@@ -39,7 +50,7 @@ return (
                         {quote}
                       <span>&rdquo;</span>
                       </div>
-                      <cite className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl">{name}, {role} at {company}</cite>
+                      <cite className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl" ref={citeScope}>{name}, {role} at {company}</cite>
                     </blockquote>
                 </div>
         )
