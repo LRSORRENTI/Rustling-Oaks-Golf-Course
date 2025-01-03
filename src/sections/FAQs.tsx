@@ -1,4 +1,9 @@
-import { FC } from "react";
+'use client';
+
+import { FC, useState } from "react";
+
+import { AnimatePresence, motion } from "motion/react";
+import { twMerge } from "tailwind-merge";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const faqs = [
@@ -25,23 +30,47 @@ const faqs = [
 ];
 
 const FAQs: FC = () => {
+
+  const [selecedIndex, setSelectedIndex] = useState<number | null>(null);
+
   return <section className="section" id="faqs">
       <div className="container">
           <h2 className="text-4xl md:text-7xl lg:text-8xl ">FAQs</h2>
           <div className="mt-10 md:mt-16 lg:mt-20">
-            {faqs.map(({question, answer}) => (
-              <div key={question} className="border-t border-stone-400 border-dotted last:border-b py-6 md:py-8 lg:py-10">
+            {faqs.map(({question, answer}, faqIndex ) => (
+              <div key={question} className="border-t border-stone-400 border-dotted last:border-b py-6 md:py-8 lg:py-10"
+                  onClick={() => {
+                    if (faqIndex === selecedIndex) {
+                      setSelectedIndex(null);
+                    } else  {
+                      setSelectedIndex(faqIndex)}
+                      }}>
                 <div className="flex items-center justify-between gap-4">
                   <div className="text-2xl md:text-3xl lg:text-4xl">
                     {question}
                   </div>
-                  <div className="inline-flex items-center justify-center  size-11 border border-stone-400 rounded-full shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                      <div className={twMerge("inline-flex items-center justify-center  size-11 border border-stone-400 rounded-full shrink-0 transition duration-400", faqIndex === selecedIndex ? " rotate-45" : "")}>
+                          <svg 
+                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                      </svg>
                   </div>
                 </div>
-              </div>
+                <AnimatePresence>
+                {faqIndex === selecedIndex && (
+                    <motion.div
+                      className="overflow-hidden"
+                      initial={{height: 0}}
+                      animate={{height: 'auto'}}
+                      exit={{height: 0}}
+                      transition={{
+                              duration: 0.5, ease: 'easeOut'}}
+                    >
+                      <p className="text-xl mt-4">{answer}</p>
+                    </motion.div>
+                  )}
+                  </AnimatePresence>
+                </div>
             ))}
           </div>
       </div>
