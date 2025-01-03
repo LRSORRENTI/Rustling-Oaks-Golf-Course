@@ -6,7 +6,7 @@ import { HTMLAttributes, useEffect } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-import { usePresence } from "motion/react";
+import { usePresence, motion } from "motion/react";
 
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
@@ -22,9 +22,14 @@ const Testimonial = (props: {
 
 const {quote, name, role, company, image, imagePositionY, className, ...rest} = props;
 
-const { scope: quoteScope, entranceAnimation: quoteEntranceAnimation } = useTextRevealAnimation();
+const { 
+        scope: quoteScope,
+        entranceAnimation: quoteEntranceAnimation, exitAnnimation: quoteExitAnimation,
+      } = useTextRevealAnimation();
 
-const { scope: citeScope, entranceAnimation: citeEntranceAnimation } = useTextRevealAnimation();
+const { scope: citeScope,
+         entranceAnimation: citeEntranceAnimation, exitAnnimation: citeExitAnimation,
+       } = useTextRevealAnimation();
 
 const [isPresent, safeToRemove] = usePresence();
 
@@ -34,14 +39,35 @@ useEffect(() => {
             citeEntranceAnimation();
         });
     } else {
-        
+        Promise.all([
+            quoteExitAnimation(),
+            citeExitAnimation()
+        ]).then(() => { 
+            safeToRemove();
+        });
     }
-}, []);
+}, [isPresent, quoteEntranceAnimation, citeEntranceAnimation, quoteExitAnimation, citeExitAnimation, safeToRemove]);
 
 return (
           <div  className={twMerge("grid md:grid-cols-5 md:gap-8 lg:gap-16 md:items-center", className)}
           {...rest}>
-                    <div className="aspect-square md:aspect-[9/16] md:col-span-2">
+                    <div className="aspect-square md:aspect-[9/16] md:col-span-2 relative">
+                      <motion.div className="absolute h-full bg-stone-900" 
+                      initial={{
+                        width: '100%',
+
+                      }}
+                      animate={{
+                        width: 0,
+                      }}
+                      exit={{
+                        width: '100%',
+                      }}
+                      transition={{
+                        duration: 0.5,
+                      }}>
+
+                      </motion.div>
                       <Image src={image} alt={name} className="object-cover size-full" style={{objectPosition: `50% ${imagePositionY * 100}%`}}/>
                     </div>
                     <blockquote className="md:col-span-3">
