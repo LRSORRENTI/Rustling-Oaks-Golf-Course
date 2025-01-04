@@ -1,7 +1,6 @@
-'use client'
+"use client";
 
 import { FC, useRef, useState } from "react";
-
 
 import image1 from "@/assets/images/testimonial-1.jpg";
 import image2 from "@/assets/images/testimonial-2.jpg";
@@ -10,9 +9,6 @@ import image3 from "@/assets/images/testimonial-3.jpg";
 import { useScroll, motion, useTransform, AnimatePresence } from "motion/react";
 import Testimonial from "@/components/Testimonial";
 
-
-
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const testimonials = [
   {
     name: "Sarah Chen",
@@ -22,8 +18,6 @@ const testimonials = [
       "Alex's expertise in both technical development and design created a beautiful, high-performing website.",
     image: image1,
     imagePositionY: 0.2,
-    // Image position y is to keep each image positioned 
-    // around the persons face
   },
   {
     name: "Marcus Rodriguez",
@@ -46,81 +40,142 @@ const testimonials = [
 ];
 
 const Testimonials: FC = () => {
-  const titleRef = useRef(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  // For parallax-like text effect
   const { scrollYProgress } = useScroll({
     target: titleRef,
-    offset: ['start end', 'end start']
-});
+    offset: ["start end", "end start"],
+  });
+  const transformTop = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const transformBottom = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
 
+  // Current testimonial index
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
 
-  const transformTop = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
-  const transformBottom = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
-
-  const [testimonialIndex, setTestimonialIndex]  = useState(0);
+  // This locks the carousel buttons while old + new animations proceed
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleClickPrev = () => {
+    // If either old is exiting or new is entering, ignore the click
+    if (isAnimating) return;
+
+    setIsAnimating(true);
+
     setTestimonialIndex((curr) => {
-      if(curr === 0) {
+      if (curr === 0) {
         return testimonials.length - 1;
       }
       return curr - 1;
-    })
-  }
+    });
+  };
 
   const handleClickNext = () => {
+    if (isAnimating) return;
+
+    setIsAnimating(true);
+
     setTestimonialIndex((curr) => {
-      if(curr === testimonials.length - 1) {
+      if (curr === testimonials.length - 1) {
         return 0;
       }
       return curr + 1;
-    })
-  }
+    });
+  };
 
-  return ( <section className="section" id="testimonials">
-    <h2 className="text-4xl md:text-7xl lg:text-8xl flex flex-col overflow-hidden" ref={titleRef}>
-      <motion.span className="whitespace-nowrap" style={{ 
-        x: transformTop
-      }}>
-        Nice words from my past clients
-      </motion.span>
-      <motion.span className="whitespace-nowrap self-end text-red-orange-500" style={
-        {
-         x: transformBottom,
-        }
-      }>
-      Nice words from my past clients
-      </motion.span>
-    </h2>
-    <div className="container">
-      <div className="mt-20">
-        <AnimatePresence mode="wait" initial={false}>
-        {testimonials.map(({name, company, role, quote, image, imagePositionY}, index ) => index === testimonialIndex && (
-          <Testimonial 
-            name={name} 
-            company={company} 
-            role={role} 
-            quote={quote} 
-            image={image} 
-            imagePositionY={imagePositionY} 
-            key={name}/>
-        ))}
-        </AnimatePresence>
+  return (
+    <section className="section" id="testimonials">
+      <h2
+        className="text-4xl md:text-7xl lg:text-8xl flex flex-col overflow-hidden"
+        ref={titleRef}
+      >
+        <motion.span className="whitespace-nowrap" style={{ x: transformTop }}>
+          Nice words from my past clients
+        </motion.span>
+        <motion.span
+          className="whitespace-nowrap self-end text-red-orange-500"
+          style={{ x: transformBottom }}
+        >
+          Nice words from my past clients
+        </motion.span>
+      </h2>
+
+      <div className="container">
+        <div className="mt-20">
+          {/* 
+            mode="wait": new child won't mount until old child is fully unmounted
+            We REMOVED onExitComplete to avoid resetting isAnimating too early
+          */}
+          <AnimatePresence mode="wait" initial={false}>
+            {testimonials.map(
+              ({ name, company, role, quote, image, imagePositionY }, index) =>
+                index === testimonialIndex && (
+                  <Testimonial
+                    key={name}
+                    name={name}
+                    company={company}
+                    role={role}
+                    quote={quote}
+                    image={image}
+                    imagePositionY={imagePositionY}
+                    // 1) Pass the parent's callback: re-enable after new item ENTERS
+                    onEnterComplete={() => {
+                      setIsAnimating(false);
+                    }}
+                  />
+                )
+            )}
+          </AnimatePresence>
+        </div>
+
+        <div className="flex gap-4 mt-6 lg:mt-10">
+          <button
+            className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full
+                       hover:bg-red-orange-500 hover:text-white hover:border-red-orange-500
+                       transition-all duration-500"
+            onClick={handleClickPrev}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+              />
+            </svg>
+          </button>
+
+          <button
+            className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full
+                       hover:bg-red-orange-500 hover:text-white hover:border-red-orange-500
+                       transition-all duration-500"
+            onClick={handleClickNext}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
-      <div className="flex gap-4 mt-6 lg:mt-10">
-        <button className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full hover:bg-red-orange-500 hover:text-white hover:border-red-orange-500 transition-all duration-500" onClick={handleClickPrev}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-           </svg>
-        </button>
-        <button className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full
-        hover:bg-red-orange-500 hover:text-white hover:border-red-orange-500 transition-all duration-500" onClick={handleClickNext}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </section>
-)};
+    </section>
+  );
+};
 
 export default Testimonials;
