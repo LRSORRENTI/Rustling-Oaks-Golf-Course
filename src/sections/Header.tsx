@@ -13,7 +13,7 @@ const navItems = [
     href: "#intro",
   },
   {
-    label: "Selected Works",
+    label: "Discover",
     href: "#projects",
   },
   {
