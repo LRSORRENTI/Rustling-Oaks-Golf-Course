@@ -8,25 +8,55 @@ import { twMerge } from "tailwind-merge";
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const faqs = [
   {
-    question: "How long does it take to build a website?",
+    question: "How do I book a tee time?",
     answer:
-      "It depends on the complexity of the website and the scope of the project.",
+      "Booking a tee time is easy! You can book online through our website or call our pro shop directly. Tee times are available up to 7 days in advance.",
   },
   {
-    question: "What is your development process like?",
+    question: "What are your hours of operation?",
     answer:
-      "I follow a hands-on approach starting with project planning, building out the core features, and regular check-ins to make sure everything matches your needs.",
+      "Rustling Oaks Golf Course is open daily from sunrise to sunset. The pro shop and driving range hours may vary, so check our website for the most up-to-date information.",
   },
   {
-    question: "Do you work with international clients?",
+    question: "Do you offer golf lessons?",
     answer:
-      "Yes, I work with clients globally and can accommodate different time zones for meetings and communication.",
+      "Yes, we have experienced golf professionals available for private lessons, group sessions, and clinics. Visit our Lessons page or contact the pro shop to schedule.",
   },
   {
-    question: "What industries do you specialize in?",
+    question: "Is there a dress code?",
     answer:
-      "I have experience across various industries including technology, retail, hospitality, and professional services, bringing fresh perspectives to each project.",
+      "We kindly request that all players adhere to our dress code: collared shirts, golf slacks or shorts, and proper golf footwear. Denim and non-golf attire are not permitted on the course.",
   },
+  {
+    question: "What amenities does Rustling Oaks offer?",
+    answer:
+      "In addition to our 36-hole championship course, we feature a driving range, mini golf, a fully stocked pro shop, and The Oaks Grill for dining and refreshments.",
+  },
+  {
+    question: "Do you host tournaments or events?",
+    answer:
+      "Yes, we specialize in hosting tournaments, corporate outings, and private events. Contact our events coordinator for more details on packages and availability.",
+  },
+  {
+    question: "Are golf carts available for rent?",
+    answer:
+      "Yes, golf carts are included with your green fee, and pull carts are also available for rent. Please inquire at the pro shop upon arrival.",
+  },
+  {
+    question: "Can I bring my family to Rustling Oaks?",
+    answer:
+      "Of course! We have activities for all ages, including mini golf and dining at The Oaks Grill, making it a perfect outing for the whole family.",
+  },
+  {
+    question: "Do you have membership options?",
+    answer:
+      "Yes, we offer several membership tiers, including individual, family, and corporate options. Memberships include exclusive benefits and discounts. Visit our Memberships page for details.",
+  },
+  {
+    question: "What is your cancellation policy for tee times?",
+    answer:
+      "Cancellations or changes to tee times must be made at least 24 hours in advance to avoid any fees. Please call the pro shop for assistance with cancellations."
+  }
 ];
 
 const FAQs: FC = () => {

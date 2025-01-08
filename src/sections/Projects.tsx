@@ -10,23 +10,23 @@ import { a } from "motion/react-client";
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const projects = [
   {
-    name: "Artisan Brew Co.",
+    name: "The Lakes Course",
     image: image1,
   },
   {
-    name: "Wavelength Studios",
+    name: "The Valley Course",
     image: image2,
   },
   {
-    name: "Nova Fitness",
+    name: "Driving Range",
     image: image3,
   },
   {
-    name: "Urban Plates",
+    name: "Mini Golf",
     image: image4,
   },
   {
-    name: "Bloom Botanicals",
+    name: "Restaurant",
     image: image5,
   },
 ];
