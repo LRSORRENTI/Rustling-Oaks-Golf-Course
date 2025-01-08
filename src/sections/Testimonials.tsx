@@ -90,13 +90,13 @@ const Testimonials: FC = () => {
         ref={titleRef}
       >
         <motion.span className="whitespace-nowrap" style={{ x: transformTop }}>
-          Nice words from my past clients
+        Nice words from our past golfers
         </motion.span>
         <motion.span
-          className="whitespace-nowrap self-end text-red-orange-500"
+          className="whitespace-nowrap self-end text-golf-green"
           style={{ x: transformBottom }}
         >
-          Nice words from my past clients
+          Nice words from our past golfers
         </motion.span>
       </h2>
 
@@ -131,7 +131,7 @@ const Testimonials: FC = () => {
         <div className="flex gap-4 mt-6 lg:mt-10">
           <button
             className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full
-                       hover:bg-red-orange-500 hover:text-white hover:border-red-orange-500
+                       hover:bg-golf-green hover:text-white hover:border-golf-green
                        transition-all duration-500"
             onClick={handleClickPrev}
           >
@@ -153,7 +153,7 @@ const Testimonials: FC = () => {
 
           <button
             className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full
-                       hover:bg-red-orange-500 hover:text-white hover:border-red-orange-500
+                       hover:bg-golf-green hover:text-white hover:border-golf-green
                        transition-all duration-500"
             onClick={handleClickNext}
           >
