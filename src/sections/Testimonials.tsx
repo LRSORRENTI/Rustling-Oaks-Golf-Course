@@ -2,42 +2,43 @@
 
 import { FC, useRef, useState } from "react";
 
-import image1 from "@/assets/images/testimonial-1.jpg";
-import image2 from "@/assets/images/testimonial-2.jpg";
-import image3 from "@/assets/images/testimonial-3.jpg";
+import image1 from "@/assets/images/golf/Baker.jpg";
+import image2 from "@/assets/images/golf/Cart.avif";
+import image3 from "@/assets/images/golf/Clarke.jpg";
 
 import { useScroll, motion, useTransform, AnimatePresence } from "motion/react";
 import Testimonial from "@/components/Testimonial";
 
 const testimonials = [
   {
-    name: "Sarah Chen",
-    company: "Pixel Perfect",
-    role: "Head of Design",
+    name: "John Baker",
+    // company: "Golf Enthusiast",
+    role: "Avid Player",
     quote:
-      "Alex's expertise in both technical development and design created a beautiful, high-performing website.",
+      "Rustling Oaks offers the perfect blend of challenging courses and serene landscapes. Every round here feels like an escape.",
     image: image1,
     imagePositionY: 0.2,
   },
   {
-    name: "Marcus Rodriguez",
-    company: "Craft Coffee Co.",
-    role: "Founder",
+    name: "Martha Green",
+    // company: "Family Outings Pro",
+    role: "Mini Golf Champion",
     quote:
-      "Alex transformed our boutique coffee brand with a website that perfectly balances aesthetics and functionality.",
+      "Our family had an incredible time at Rustling Oaks. The mini golf course is fun for all ages, and the restaurant is top-notch!",
     image: image2,
     imagePositionY: 0.1,
   },
   {
-    name: "Emily Watson",
-    company: "Studio Minimal",
-    role: "Creative Director",
+    name: "David Clark",
+    // company: "Corporate Retreat Planner",
+    role: "Event Organizer",
     quote:
-      "The collaborative process was amazing. Alex brought lots of fresh perspectives and innovative solutions.",
+      "Hosting our corporate golf tournament at Rustling Oaks was a seamless experience. The staff went above and beyond to make it memorable.",
     image: image3,
     imagePositionY: 0.55,
   },
 ];
+
 
 const Testimonials: FC = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -108,12 +109,12 @@ const Testimonials: FC = () => {
           */}
           <AnimatePresence mode="wait" initial={false}>
             {testimonials.map(
-              ({ name, company, role, quote, image, imagePositionY }, index) =>
+              ({ name, role, quote, image, imagePositionY }, index) =>
                 index === testimonialIndex && (
                   <Testimonial
                     key={name}
                     name={name}
-                    company={company}
+                    // company={company}
                     role={role}
                     quote={quote}
                     image={image}

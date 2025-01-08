@@ -11,7 +11,7 @@ const archivo = Archivo({
 
 
 export const metadata: Metadata = {
-  title: "Minimal Single Page Portfolio",
+  title: "Rustling Oaks",
   description: "Created with love",
 };
 

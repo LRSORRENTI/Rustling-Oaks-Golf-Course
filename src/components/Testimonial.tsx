@@ -10,7 +10,7 @@ interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
   quote: string;
   name: string;
   role: string;
-  company: string;
+  // company: string;
   imagePositionY: number;
   image: string | StaticImport;
   className?: string;
@@ -23,7 +23,7 @@ const Testimonial = (props: TestimonialProps) => {
     quote,
     name,
     role,
-    company,
+    // company,
     image,
     imagePositionY,
     className,
@@ -116,7 +116,7 @@ const Testimonial = (props: TestimonialProps) => {
           className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl"
           ref={citeScope}
         >
-          {name}, {role} at {company}
+          - {name}  
         </cite>
       </blockquote>
     </motion.div>
