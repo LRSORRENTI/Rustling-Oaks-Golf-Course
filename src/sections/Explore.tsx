@@ -1,10 +1,11 @@
 import { FC } from "react";
 import Image from "next/image";
-import image1 from "@/assets/images/project-1.jpg";
-import image2 from "@/assets/images/project-2.jpg";
-import image3 from "@/assets/images/project-3.jpg";
-import image4 from "@/assets/images/project-4.jpg";
-import image5 from "@/assets/images/project-5.jpg";
+import image1 from "@/assets/images/golf/Course.jpg";
+import image2 from "@/assets/images/golf/Course2.jpg";
+import image3 from "@/assets/images/golf/Driving-Range.jpg";
+import image4 from "@/assets/images/golf/Mini-Golf.jpg";
+import image5 from "@/assets/images/restaurant.jpg";
+
 import { a } from "motion/react-client";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -31,11 +32,11 @@ const projects = [
   },
 ];
 
-const Projects: FC = () => {
+const Explore: FC = () => {
   return <section className="section" id="projects">
       <div className="container">
         <h2 className="text-4xl md:text-7xl lg:text-8xl">
-          Selected Works
+            Discover Rustling Oaks
         </h2>
         <div className="mt-10 md:mt-16 lg:mt-20">
           {projects.map(({ name, image }) => (
@@ -81,4 +82,4 @@ const Projects: FC = () => {
   </section>;
 };
 
-export default Projects;
+export default Explore;
