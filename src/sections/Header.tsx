@@ -192,7 +192,7 @@ const Header: FC = () => {
                 }}/>
               </svg>
               </div>
-              <button className="bg-red-orange-500 h-11 px-6 rounded-xl text-white border border-red-orange-500 uppercase hidden md:inline-flex items-center">Contact Me</button>
+              <button className="bg-golf-green h-11 px-6 rounded-xl text-white border border-golf-green uppercase hidden md:inline-flex items-center">Contact Me</button>
           </div>
         </div>
       </div>

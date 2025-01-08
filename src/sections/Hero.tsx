@@ -4,7 +4,9 @@ import { FC, useEffect, useRef } from "react";
 import Image from "next/image";
 import Button from "@/components/Button";
 
-import heroImage from "@/assets/images/hero-image.jpg";
+import heroImage from "@/assets/images/golf/Post-Swing-Golfer.jpg";
+
+
 
 import {  motion, useScroll, useTransform} from "motion/react";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
@@ -39,7 +41,7 @@ const Hero: FC = () => {
           animate={{ opacity: 1}}
           ref={scope}
           className="text-5xl md:text-6xl lg:text-7xl mt-40 md:mt-0">
-            Crafting digital experiences through code and creative design
+          Shaping memorable moments with fun and challenging golf experiences
           </motion.h1>
           <div className="flex flex-col md:flex-row md:items-center mt-10 items-start gap-6">
           <motion.div
@@ -67,7 +69,7 @@ const Hero: FC = () => {
               </div>
             </div>
           }>
-            <p className="">View My Work</p>
+            <p className="">View More</p>
           </Button>
           </motion.div>
           <motion.div 
