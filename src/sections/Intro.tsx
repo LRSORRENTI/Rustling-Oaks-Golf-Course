@@ -25,7 +25,7 @@ const Intro: FC = () => {
   <section className="section mt-12 md:mt-16 lg:mt-20 " id="intro" ref={sectionRef}>
     <div className="container">
       <h2 className="text-4xl md:text-7xl lg:text-[5rem] lg:w-[80%]" ref={scope}>
-      Offering 36 holes of golf, driving range, mini golf, and dining to elevate your experience and make every visit unforgettable!
+      Offering 36 holes of golf, driving range, mini golf, and dining options to elevate your experience and make every visit unforgettable!
       </h2>
     </div>
   </section>

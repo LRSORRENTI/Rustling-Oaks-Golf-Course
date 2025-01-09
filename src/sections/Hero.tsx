@@ -35,12 +35,12 @@ const Hero: FC = () => {
   <section>
     <div className="grid md:grid-cols-12 md:h-screen items-stretch sticky top-0 " id="about">
       <div className="md:col-span-7 flex flex-col justify-center">
-      <div className="container !max-w-full ">
+      <div className="container !max-w-full  text-pretty">
           <motion.h1 
           initial={{ opacity: 0}}
           animate={{ opacity: 1}}
           ref={scope}
-          className="text-5xl md:text-6xl lg:text-7xl mt-40 md:mt-0">
+          className="text-5xl md:text-6xl lg:text-7xl mt-40 md:mt-0 text-pretty">
           Shaping memorable moments with fun and challenging golf experiences
           </motion.h1>
           <div className="flex flex-col md:flex-row md:items-center mt-10 items-start gap-6">
