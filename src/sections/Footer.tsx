@@ -15,7 +15,7 @@ const navItems = [
   },
   {
     href: '#projects',
-    label: 'Projects'
+    label: 'Discover'
   },
   {
     href: '#testimonials',
@@ -70,11 +70,11 @@ const Footer: FC = () => {
         <div className="flex items-center gap-3 ">
           <div className="size-3 rounded-full bg-green-400 animate-pulse">
           </div>
-        <span className="uppercase">One spot available for next nonth</span>
+        <span className="uppercase">Tee Times available for today</span>
       </div>
       <div className="grid md:grid-cols-3 md:items-center">
         <div className="md:col-span-2">
-      <h2 className="text-4xl md:text-7xl lg:text-8xl mt-8 font-extralight" ref={scope}>Enough talk let's make something great together</h2>
+      <h2 className="text-4xl md:text-7xl lg:text-8xl mt-8 font-extralight" ref={scope}>Why wait? Let&apos;s make your next round truly extraordinary.</h2>
         <Button variant="secondary" 
          className="mt-8"
          iconAfter={
@@ -103,7 +103,7 @@ const Footer: FC = () => {
                 </div>
               </div>
           }>
-            <p className="pt-[0.1rem]">info@test.com</p>
+            <p className="pt-[0.1rem]">Book Teetime</p>
         </Button>
         </div>
         <div>
@@ -120,7 +120,7 @@ const Footer: FC = () => {
       </div>
       </div>
       </div>
-      <p className="py-16 text-white/30 text-sm">Copyright &copy; GoCenter &bull; All rights reserved</p>
+      <p className="py-16 text-white/30 text-sm">Copyright &copy; Rustling Oaks &bull; All rights reserved</p>
     </div>
   </footer>
   )

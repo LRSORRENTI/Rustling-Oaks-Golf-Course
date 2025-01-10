@@ -45,33 +45,57 @@ const Hero: FC = () => {
           </motion.h1>
           <div className="flex flex-col md:flex-row md:items-center mt-10 items-start gap-6">
           <motion.div
-            initial={{ opacity: 0, y: "100%"}}
-            animate={{ opacity: 1, y: 0}}
-            transition={{ duration: 0.5, delay: 1.75}}
+  initial={{ opacity: 0, y: "100%" }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 1.75 }}
+>
+  <Button
+    variant="secondary"
+    iconAfter={
+      <div className="overflow-hidden size-5">
+        <div className="h-5 w-10 flex group-hover/button:-translate-x-1/2 transition-transform duration-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="size-5"
           >
-          <Button variant="secondary" iconAfter={
-            <div className="overflow-hidden size-5">
-              <div className="h-5 w-10 flex group-hover/button:-translate-x-1/2 transition-transform duration-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  strokeWidth="1.5" stroke="currentColor" className="size-5">
-                  <path 
-                  strokeLinecap="round" strokeLinejoin="round" 
-                  d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
-                  </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  strokeWidth="1.5" stroke="currentColor" className="size-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
-                  </svg>
-              </div>
-            </div>
-          }>
-            <p className="">View More</p>
-          </Button>
-          </motion.div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="size-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5"
+            />
+          </svg>
+        </div>
+      </div>
+    }
+    onClick={() => {
+      const section = document.querySelector("#projects");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }}
+  >
+    <p className="">View More</p>
+  </Button>
+</motion.div>
+
           <motion.div 
                  initial={{ opacity: 0, y: "100%"}}
                  animate={{ opacity: 1, y: 0}}
