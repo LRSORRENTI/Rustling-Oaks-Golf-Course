@@ -1,20 +1,13 @@
-'use client'
+"use client";
 
 import Image from "next/image";
-
 import { notFound } from "next/navigation";
 
-import { projects } from "@/sections/Explore"; // Move your projects array to a shared file
-
+import { projects } from "@/sections/Explore"; // ensure projects is exported from a shared file
 import { FC, useEffect, useRef } from "react";
 
-
-
-import {  motion, useScroll, useTransform} from "motion/react";
+import { motion } from "motion/react";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
-import { div } from "motion/react-client";
-
-
 
 export default function CourseDetails({ params }: any) {
   const { slug } = params;
@@ -24,42 +17,48 @@ export default function CourseDetails({ params }: any) {
     notFound();
   }
 
-
-  const { scope, entranceAnimation  } = useTextRevealAnimation();
+  const { scope, entranceAnimation } = useTextRevealAnimation();
 
   useEffect(() => {
     entranceAnimation();
-  }, [entranceAnimation])
-
+  }, [entranceAnimation]);
 
   return (
-      <div className="">
-      <div className="border border-green-500 flex flex-col lg:flex-row lg:mt-4 mx-auto">
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8">
         {/* Animated H1 */}
         <motion.h1
-           initial={{ opacity: 0}}
-           animate={{ opacity: 1}}
-        //   animate={controls}
           ref={scope}
-          className="text-5xl md:text-8xl lg:text-9xl mb-6 lg:pr-28 lg:ml-24 lg:pt-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-5xl md:text-8xl lg:text-9xl lg:mt-4 flex-1"
         >
           {project.name}
         </motion.h1>
-        <div className="relative">
+
+        {/* Image container */}
+        <div className="relative flex-1 max-w-full">
           <Image
             src={project.image}
             alt={`${project.name} image`}
-            className="rounded-lg lg:pr-4"
+            width={1200}
+            height={800}
+            quality={90}
+            // objectFit = cover in Next/Image is replaced by style in Next 13
+            style={{ objectFit: "cover" }}
+            className="rounded-lg w-full h-[40rem] max-h-[80rem] "
+            priority
           />
         </div>
       </div>
-      <div className="mt-8 text-lg md:text-xl lg:text-2xl flex mx-auto justify-center text-left max-w-[46rem]">
-          <p>
-            Welcome to {project.name}! Here you'll find more details about this
-            part of Rustling Oaks. (Add more descriptive text here about the
-            course, driving range, mini golf, or restaurant.)
-          </p>
-        </div>
-   </div>
+
+      <div className="mt-8 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto text-left">
+        <p>
+          Welcome to {project.name}! Here you'll find more details about this
+          part of Rustling Oaks. (Add more descriptive text here about the
+          course, driving range, mini golf, or restaurant.)
+        </p>
+      </div>
+    </div>
   );
 }
