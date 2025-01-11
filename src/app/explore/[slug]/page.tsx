@@ -35,28 +35,31 @@ export default function CourseDetails({ params }: any) {
         >
           {project.name}
         </motion.h1>
-
-        {/* Image container */}
-        <div className="relative flex-1 max-w-full">
+  
+        {/* Image container with fade-in animation */}
+        <motion.div
+          className="relative flex-1 max-w-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }} // adjust duration as needed
+        >
           <Image
             src={project.image}
             alt={`${project.name} image`}
             width={1200}
             height={800}
             quality={90}
-            // objectFit = cover in Next/Image is replaced by style in Next 13
             style={{ objectFit: "cover" }}
-            className="rounded-lg w-full h-[40rem] max-h-[80rem] "
+            className="rounded-lg w-full h-[40rem] max-h-[80rem]"
             priority
           />
-        </div>
+        </motion.div>
       </div>
-
+  
       <div className="mt-8 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto text-left">
         <p>
           Welcome to {project.name}! Here you'll find more details about this
-          part of Rustling Oaks. (Add more descriptive text here about the
-          course, driving range, mini golf, or restaurant.)
+          part of Rustling Oaks...
         </p>
       </div>
     </div>
