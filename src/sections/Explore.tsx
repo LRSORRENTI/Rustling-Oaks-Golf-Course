@@ -9,26 +9,31 @@ import image5 from "@/assets/images/restaurant.jpg";
 import { a } from "motion/react-client";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-const projects = [
+export const projects = [
   {
     name: "The Lakes Course",
     image: image1,
+    slug: "the-lakes-course",
   },
   {
     name: "The Valley Course",
     image: image2,
+    slug: "the-valley-course",
   },
   {
     name: "Driving Range",
     image: image3,
+    slug: "driving-range",
   },
   {
     name: "Mini Golf",
     image: image4,
+    slug: "mini-golf",
   },
   {
     name: "Restaurant",
     image: image5,
+    slug: "restaurant",
   },
 ];
 
@@ -39,8 +44,9 @@ const Explore: FC = () => {
             Discover Rustling Oaks
         </h2>
         <div className="mt-10 md:mt-16 lg:mt-20">
-          {projects.map(({ name, image }) => (
-              <a href="#" key={name} className="flex flex-col border-t  border-stone-400 last:border-b border-dotted py-6 md:py-8 lg:py-10 relative group/project px-4">
+          {projects.map(({ name, image, slug }) => (
+              <a  href={`/explore/${slug}`}
+                key={name} className="flex flex-col border-t  border-stone-400 last:border-b border-dotted py-6 md:py-8 lg:py-10 relative group/project px-4">
                 <div className="absolute bottom-0 left-0 w-full h-0 group-hover/project:h-full transition-all duration-700  bg-stone-300"></div>
                 <div className="relative">
                   <div className="aspect-video md:hidden ">

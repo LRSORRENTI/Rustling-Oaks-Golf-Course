@@ -91,13 +91,13 @@ const Testimonials: FC = () => {
         ref={titleRef}
       >
         <motion.span className="whitespace-nowrap" style={{ x: transformTop }}>
-        Nice words from our past golfers
+        Nice words from our golf patrons
         </motion.span>
         <motion.span
           className="whitespace-nowrap self-end text-golf-green"
           style={{ x: transformBottom }}
         >
-          Nice words from our past golfers
+          Nice words from our golf patrons
         </motion.span>
       </h2>
 
