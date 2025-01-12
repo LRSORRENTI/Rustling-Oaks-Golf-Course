@@ -37,6 +37,7 @@ export const projects = [
   },
 ];
 
+
 const Explore: FC = () => {
   return <section className="section" id="projects">
       <div className="container">

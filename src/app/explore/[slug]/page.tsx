@@ -2,66 +2,131 @@
 
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { projects } from "@/sections/Explore"; // ensure projects is exported from a shared file
+import { projects } from "@/sections/Explore";
+import { courseData } from "../courseData"; // adjust path as needed
 
 import { useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, useInView } from "motion/react"; // note: import useInView here
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
-import BagImg from '../../../assets/images//golf/Bag.jpg'
+
+/** A small subcomponent to handle a single row's animations + layout. */
+function CheckerboardRow({
+  index,
+  image,
+  text,
+}: {
+  index: number;
+  image: any;
+  text: string;
+}) {
+  // Determine left/right image positioning
+  const isEven = index % 2 === 0;
+
+  // Our custom text reveal hook
+  const { scope, entranceAnimation } = useTextRevealAnimation();
+
+  // In-view detection for this row's text
+  const inView = useInView(scope, {
+    once: true, // animate only once
+    amount: 0.2, // how much of the element should be in view to trigger
+  });
+
+  // Fire the text reveal animation when the row enters the viewport
+  useEffect(() => {
+    if (inView) {
+      entranceAnimation();
+    }
+  }, [inView, entranceAnimation]);
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      {/* Image */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        // only animate once (if you prefer) with motion’s viewport options:
+        viewport={{ once: true, amount: 0.2 }}
+        className={
+          isEven
+            ? "order-1 md:order-1" // image on left
+            : "order-2 md:order-2 md:col-start-2 md:col-end-3" // image on right
+        }
+      >
+        <Image
+          src={image}
+          alt={`checkerboard-${index}`}
+          width={1200}
+          height={800}
+          style={{ objectFit: "cover" }}
+          className="rounded-lg w-full h-64 md:h-80"
+        />
+      </motion.div>
+
+      {/* Text with reveal animation */}
+      <motion.p
+        ref={scope} // tie the inView detection + text reveal to this <p>
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className={
+          isEven
+            ? "order-2 md:order-2 text-lg md:text-xl lg:text-2xl"
+            : "order-1 md:order-1 md:col-start-1 md:col-end-2 text-lg md:text-xl lg:text-2xl"
+        }
+      >
+        {text}
+      </motion.p>
+    </div>
+  );
+}
 
 export default function CourseDetails({ params }: any) {
   const { slug } = params;
+
+  // Find the "project" from Explore that matches the slug
   const project = projects.find((p) => p.slug === slug);
 
+  // If not in your projects array, bail
   if (!project) {
     notFound();
   }
 
-  // -- 1) Create multiple references for each text block you want animated --
-  //    or you can wrap all text blocks in a single parent if you prefer
-  const {
-    scope: titleScope,
-    entranceAnimation: titleEntrance,
-  } = useTextRevealAnimation();
+  // Grab the checkerboard items + optional custom intro paragraph
+  // from our courseData. If not found, we can fallback to an empty array
+  const dataForSlug = courseData[slug] || {
+    checkerboard: [],
+    introParagraph: "",
+  };
 
-  const {
-    scope: introTextScope,
-    entranceAnimation: introTextEntrance,
-  } = useTextRevealAnimation();
+  const checkerboardItems = dataForSlug.checkerboard;
 
-  // Example data to show 4 "checkerboard" sections
-  // You can replace image paths and text with real data
-  const checkerboardItems = [
-    {
-      image: BagImg,
-      text: "Checkerboard content #1 – brief details about the image.",
-    },
-    {
-      image: BagImg,
-      text: "Checkerboard content #2 – more details about the next image.",
-    },
-    {
-      image: BagImg,
-      text: "Checkerboard content #3 – a different description for the image.",
-    },
-    {
-      image: BagImg,
-      text: "Checkerboard content #4 – final text for this example section.",
-    },
-  ];
+  // Optionally override or customize introduction text
+  const customIntroText = dataForSlug.introParagraph
+    ? dataForSlug.introParagraph
+    : `Welcome to ${project.name}! Here you'll find more details about this part of Rustling Oaks...`;
 
-  // -- 2) We'll generate a separate hook instance for each checkerboard <p> if you want each to animate separately.
-  //    If you want them all in one container, you could do that instead.
-  const checkerboardHooks = checkerboardItems.map(() => useTextRevealAnimation());
+  // Animation for the main Title
+  const { scope: titleScope, entranceAnimation: titleEntrance } =
+    useTextRevealAnimation();
+  // Animation for the Intro Paragraph
+  const { scope: introTextScope, entranceAnimation: introTextEntrance } =
+    useTextRevealAnimation();
 
-  // Fire entrance animations once on mount
+  // We also want the Title & Intro to animate only when in view
+  const titleInView = useInView(titleScope, { once: true, amount: 0.2 });
+  const introInView = useInView(introTextScope, { once: true, amount: 0.2 });
+
+  // Fire entrance animations for Title + Intro once they're in view
   useEffect(() => {
-    titleEntrance();
-    introTextEntrance();
-    checkerboardHooks.forEach((hook) => {
-      hook.entranceAnimation();
-    });
-  }, [titleEntrance, introTextEntrance, checkerboardHooks]);
+    if (titleInView) {
+      titleEntrance();
+    }
+  }, [titleInView, titleEntrance]);
+
+  useEffect(() => {
+    if (introInView) {
+      introTextEntrance();
+    }
+  }, [introInView, introTextEntrance]);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -79,12 +144,13 @@ export default function CourseDetails({ params }: any) {
           {project.name}
         </motion.h1>
 
-        {/* Image container with fade-in animation */}
+        {/* Main image from projects array */}
         <motion.div
           className="relative flex-1 max-w-full"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2 }} // adjust duration as needed
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }} // triggers fade-in once image is ~30% visible
+          transition={{ duration: 1.2 }}
         >
           <Image
             src={project.image}
@@ -109,8 +175,7 @@ export default function CourseDetails({ params }: any) {
           animate={{ opacity: 1 }}
           className="text-lg md:text-xl lg:text-2xl text-left"
         >
-          Welcome to {project.name}! Here you'll find more details about this part
-          of Rustling Oaks...
+          {customIntroText}
         </motion.p>
       </div>
 
@@ -118,53 +183,14 @@ export default function CourseDetails({ params }: any) {
           Checkerboard Layout
       -------------------------- */}
       <div className="mt-16 space-y-16">
-        {checkerboardItems.map((item, i) => {
-          const { scope, entranceAnimation } = checkerboardHooks[i];
-          // Even index = image on left, text on right
-          // Odd index  = text on left, image on right
-          const isEven = i % 2 === 0;
-
-          return (
-            <div
-              key={i}
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-            >
-              {/* Image */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className={
-                  isEven
-                    ? "order-1 md:order-1" // image on left
-                    : "order-2 md:order-2 md:col-start-2 md:col-end-3" // image on right
-                }
-              >
-                <Image
-                  src={item.image}
-                  alt={`checkerboard-${i}`}
-                  width={1200}
-                  height={800}
-                  style={{ objectFit: "cover" }}
-                  className="rounded-lg w-full h-64 md:h-80"
-                />
-              </motion.div>
-
-              {/* Text with reveal animation */}
-              <motion.p
-                ref={scope}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className={
-                  isEven
-                    ? "order-2 md:order-2 text-lg md:text-xl lg:text-2xl"
-                    : "order-1 md:order-1 md:col-start-1 md:col-end-2 text-lg md:text-xl lg:text-2xl"
-                }
-              >
-                {item.text}
-              </motion.p>
-            </div>
-          );
-        })}
+        {checkerboardItems.map((item, i) => (
+          <CheckerboardRow
+            key={i}
+            index={i}
+            image={item.image}
+            text={item.text}
+          />
+        ))}
       </div>
     </div>
   );
