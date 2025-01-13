@@ -139,7 +139,7 @@ export default function CourseDetails({ params }: any) {
           ref={titleScope}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-5xl md:text-8xl lg:text-9xl lg:mt-4 flex-1"
+          className="text-5xl md:text-8xl lg:text-8xl lg:mt-4 flex-1"
         >
           {project.name}
         </motion.h1>
@@ -168,7 +168,7 @@ export default function CourseDetails({ params }: any) {
       {/* -------------------------
           Intro Paragraph
       -------------------------- */}
-      <div className="mt-8 max-w-3xl mx-auto">
+      <div className=" mt-8 md:mt-20 md:mb-20  max-w-3xl mx-auto">
         <motion.p
           ref={introTextScope}
           initial={{ opacity: 0 }}
