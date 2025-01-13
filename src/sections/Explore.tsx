@@ -31,7 +31,7 @@ export const projects = [
     slug: "mini-golf",
   },
   {
-    name: "Restaurant",
+    name: "Rustling Restaurant",
     image: image5,
     slug: "restaurant",
   },

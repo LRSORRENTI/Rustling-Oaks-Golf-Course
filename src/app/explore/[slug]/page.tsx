@@ -39,7 +39,7 @@ function CheckerboardRow({
   }, [inView, entranceAnimation]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-center">
       {/* Image */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -135,12 +135,12 @@ export default function CourseDetails({ params }: any) {
       -------------------------- */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8">
         {/* Animated H1 */}
-        <div className="lg:mr-24">
+        <div className="">
         <motion.h1
           ref={titleScope}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-5xl md:text-8xl lg:text-8xl lg:mt-4 flex-1 lg:mb-10"
+          className="text-5xl md:text-8xl lg:text-8xl lg:mt-4 flex-1 lg:mb-10 max-w-[30rem]"
         >
           {project.name}
           
@@ -149,7 +149,7 @@ export default function CourseDetails({ params }: any) {
           ref={introTextScope}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-lg md:text-xl lg:text-2xl text-left lg:max-w-[30rem] text-balance mt-6 lg:mt-0"
+          className="text-lg md:text-xl lg:text-2xl text-left lg:max-w-[30rem] mt-6 lg:mt-0"
         >
           {customIntroText}
         </motion.p>
@@ -170,7 +170,7 @@ export default function CourseDetails({ params }: any) {
             height={800}
             quality={90}
             style={{ objectFit: "cover", boxShadow:" rgb(38, 57, 77) 0px 20px 30px -10px" }}
-            className="rounded-lg w-full h-[40rem] max-h-[80rem]"
+            className="rounded-lg w-full h-[40rem] max-h-[80rem] lg:ml-12"
             priority
           />
         </motion.div>
