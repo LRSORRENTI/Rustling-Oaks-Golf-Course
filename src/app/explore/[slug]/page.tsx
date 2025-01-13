@@ -57,7 +57,7 @@ function CheckerboardRow({
           alt={`checkerboard-${index}`}
           width={1200}
           height={800}
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", boxShadow:" rgb(38, 57, 77) 0px 20px 30px -10px" }}
           className="rounded-lg w-full h-64 md:h-80"
         />
       </motion.div>
@@ -135,14 +135,25 @@ export default function CourseDetails({ params }: any) {
       -------------------------- */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8">
         {/* Animated H1 */}
+        <div className="lg:mr-24">
         <motion.h1
           ref={titleScope}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-5xl md:text-8xl lg:text-8xl lg:mt-4 flex-1"
+          className="text-5xl md:text-8xl lg:text-8xl lg:mt-4 flex-1 lg:mb-10"
         >
           {project.name}
+          
         </motion.h1>
+        <motion.p
+          ref={introTextScope}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-lg md:text-xl lg:text-2xl text-left lg:max-w-[30rem] text-balance mt-6 md:mt-0"
+        >
+          {customIntroText}
+        </motion.p>
+        </div>
 
         {/* Main image from projects array */}
         <motion.div
@@ -158,25 +169,11 @@ export default function CourseDetails({ params }: any) {
             width={1200}
             height={800}
             quality={90}
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", boxShadow:" rgb(38, 57, 77) 0px 20px 30px -10px" }}
             className="rounded-lg w-full h-[40rem] max-h-[80rem]"
             priority
           />
         </motion.div>
-      </div>
-
-      {/* -------------------------
-          Intro Paragraph
-      -------------------------- */}
-      <div className=" mt-8 md:mt-20 md:mb-20  max-w-3xl mx-auto">
-        <motion.p
-          ref={introTextScope}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-lg md:text-xl lg:text-2xl text-left"
-        >
-          {customIntroText}
-        </motion.p>
       </div>
 
       {/* -------------------------
