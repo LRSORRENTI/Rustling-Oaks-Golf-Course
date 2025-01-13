@@ -149,7 +149,7 @@ export default function CourseDetails({ params }: any) {
           ref={introTextScope}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-lg md:text-xl lg:text-2xl text-left lg:max-w-[30rem] text-balance mt-6 md:mt-0"
+          className="text-lg md:text-xl lg:text-2xl text-left lg:max-w-[30rem] text-balance mt-6 lg:mt-0"
         >
           {customIntroText}
         </motion.p>
