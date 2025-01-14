@@ -9,7 +9,7 @@ import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 interface TestimonialProps extends HTMLAttributes<HTMLDivElement> {
   quote: string;
   name: string;
-  role: string;
+  // role: string;
   // company: string;
   imagePositionY: number;
   image: string | StaticImport;
@@ -22,7 +22,7 @@ const Testimonial = (props: TestimonialProps) => {
   const {
     quote,
     name,
-    role,
+    // role,
     // company,
     image,
     imagePositionY,
