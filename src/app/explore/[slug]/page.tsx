@@ -9,16 +9,16 @@ import { useEffect } from "react";
 import { motion, useInView } from "motion/react"; // note: import useInView here
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
-interface CheckerboardItem {
-  image: string;
-  text: string;
-}
+// interface CheckerboardItem {
+//   image: string;
+//   text: string;
+// }
 
-interface CheckerboardRowProps {
-  index: number;
-  image: string;
-  text: string;
-}
+// interface CheckerboardRowProps {
+//   index: number;
+//   image: string;
+//   text: string;
+// }
 
 interface CourseDetailsProps {
   params: { slug: string };

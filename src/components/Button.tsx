@@ -16,10 +16,10 @@ const Button = (props: {
             variant === "text" && "h-auto px-0 border-transparent after:transition-all after:duration-500 after:content-[''] after:h-px after:w-0 after:absolute after:top-full after:bg-golf-green hover:after:w-full",
             className
             )} {...rest}>
-            <span>
+            <span role="contentinfo">
                 {children}
             </span>
-            {iconAfter && <span>{iconAfter}</span>}
+            {iconAfter && <span role="contentinfo">{iconAfter}</span>}
         </button>
     )
 }
