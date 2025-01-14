@@ -6,8 +6,6 @@ import image3 from "@/assets/images/golf/Driving-Range.jpg";
 import image4 from "@/assets/images/golf/Mini-Golf.jpg";
 import image5 from "@/assets/images/restaurant.jpg";
 
-import { a } from "motion/react-client";
-
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 export const projects = [
   {

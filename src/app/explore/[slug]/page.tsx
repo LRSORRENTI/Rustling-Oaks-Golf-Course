@@ -9,6 +9,21 @@ import { useEffect } from "react";
 import { motion, useInView } from "motion/react"; // note: import useInView here
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
+interface CheckerboardItem {
+  image: string;
+  text: string;
+}
+
+interface CheckerboardRowProps {
+  index: number;
+  image: string;
+  text: string;
+}
+
+interface CourseDetailsProps {
+  params: { slug: string };
+}
+
 /** A small subcomponent to handle a single row's animations + layout. */
 function CheckerboardRow({
   index,
@@ -79,7 +94,7 @@ function CheckerboardRow({
   );
 }
 
-export default function CourseDetails({ params }: any) {
+export default function CourseDetails({ params }: CourseDetailsProps) {
   const { slug } = params;
 
   // Find the "project" from Explore that matches the slug
