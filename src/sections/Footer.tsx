@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, MouseEvent } from "react";
+import { FC, useEffect } from "react";
 
 import Button from "@/components/Button";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";

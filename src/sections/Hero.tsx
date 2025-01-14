@@ -109,7 +109,7 @@ const Hero: FC = () => {
               section.scrollIntoView({ behavior: "smooth" });
             }
           }}>
-            Let's Talk
+            Let&apos;s Talk
           </Button>
           </motion.div>
         </div>

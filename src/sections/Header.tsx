@@ -1,6 +1,6 @@
 'use client';
 
-import { a, div, header } from "motion/react-client";
+
 import { FC, useEffect, useState } from "react";
 import { motion, useAnimate } from "motion/react";
 import {
