@@ -1,5 +1,6 @@
 "use client";
 
+import type { StaticImageData } from 'next/image';
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { projects } from "@/sections/Explore";
@@ -31,7 +32,7 @@ function CheckerboardRow({
   text,
 }: {
   index: number;
-  image: any;
+  image: StaticImageData;
   text: string;
 }) {
   // Determine left/right image positioning
