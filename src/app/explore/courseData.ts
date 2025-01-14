@@ -1,3 +1,6 @@
+import type { StaticImageData } from 'next/image';
+
+
 // app/explore/courseData.ts (or wherever you like)
 
 import lakes1 from "@/assets/images/slugImages/lakesCourse/lakes1.jpg";
@@ -33,7 +36,7 @@ import rest5 from "@/assets/images/slugImages/Restaurant/rest5.jpg";
 export const courseData: Record<
   string,
   {
-    checkerboard: { image: any; text: string }[];
+    checkerboard: { image: StaticImageData; text: string }[];
     introParagraph: string; // optional: set unique intro text for each slug
   }
 > = {
