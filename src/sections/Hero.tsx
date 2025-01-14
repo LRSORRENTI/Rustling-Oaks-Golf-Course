@@ -102,7 +102,13 @@ const Hero: FC = () => {
                  transition={{ duration: 0.5, delay: 2}}
           
           >
-          <Button variant="text">
+          <Button variant="text"
+          onClick={() => {
+            const section = document.querySelector("#contact");
+            if (section) {
+              section.scrollIntoView({ behavior: "smooth" });
+            }
+          }}>
             Let's Talk
           </Button>
           </motion.div>
