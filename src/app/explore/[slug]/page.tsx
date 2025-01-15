@@ -32,7 +32,7 @@ function CheckerboardRow({
   text,
 }: {
   index: number;
-  image: StaticImageData;
+  image: StaticImageData | string;
   text: string;
 }) {
   // Determine left/right image positioning
