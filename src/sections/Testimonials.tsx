@@ -3,7 +3,7 @@
 import { FC, useRef, useState } from "react";
 
 import image1 from "@/assets/images/golf/Baker.jpg";
-import image2 from "@/assets/images/golf/Cart.avif";
+import image2 from "@/assets/images/golf/Cart.png";
 import image3 from "@/assets/images/golf/Clarke.jpg";
 
 import { useScroll, motion, useTransform, AnimatePresence } from "motion/react";
