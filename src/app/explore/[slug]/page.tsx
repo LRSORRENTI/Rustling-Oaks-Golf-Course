@@ -73,7 +73,9 @@ function CheckerboardRow({
           alt={`checkerboard-${index}`}
           width={1200}
           height={800}
-          style={{ objectFit: "cover", boxShadow:" rgb(38, 57, 77) 0px 20px 30px -10px" }}
+          style={{ objectFit: "cover",
+          boxShadow: "rgba(0, 0, 0, 0.16) 0px 3.75px 7.5px, rgba(0, 0, 0, 0.23) 0px 3.75px 7.5px",
+      }}
           className="rounded-lg w-full h-64 md:h-80"
         />
       </motion.div>
@@ -185,7 +187,10 @@ export default function CourseDetails({ params }: CourseDetailsProps) {
             width={1200}
             height={800}
             quality={90}
-            style={{ objectFit: "cover", boxShadow:" rgb(38, 57, 77) 0px 20px 30px -10px" }}
+            style={{ objectFit: "cover", 
+              boxShadow: "rgba(0, 0, 0, 0.16) 0px 3.75px 7.5px, rgba(0, 0, 0, 0.23) 0px 3.75px 7.5px",
+
+            }}
             className="rounded-lg w-full h-[40rem] max-h-[80rem] lg:ml-12"
             priority
           />
