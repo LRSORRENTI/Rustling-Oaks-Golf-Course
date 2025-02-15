@@ -67,7 +67,13 @@ function CheckerboardRow({
             ? "order-1 md:order-1" // image on left
             : "order-2 md:order-2 md:col-start-2 md:col-end-3" // image on right
         }
-      >
+      ><div className="relative">
+      {/* Background offset div with alternating positions */}
+      <div
+        className={`absolute -z-10 bg-[#9EBF0B] w-full h-full rounded-lg ${
+          isEven ? "-left-[0.6rem] -top-[0.5rem]" : "left-[0.6rem] top-[0.5rem]"
+        }`}
+      ></div>
         <Image
           src={image}
           alt={`checkerboard-${index}`}
@@ -78,21 +84,32 @@ function CheckerboardRow({
       }}
           className="rounded-lg w-full h-64 md:h-80"
         />
+        </div>
       </motion.div>
 
       {/* Text with reveal animation */}
-      <motion.p
-        ref={scope} // tie the inView detection + text reveal to this <p>
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className={
-          isEven
-            ? "order-2 md:order-2 text-lg md:text-xl lg:text-2xl"
-            : "order-1 md:order-1 md:col-start-1 md:col-end-2 text-lg md:text-xl lg:text-2xl"
-        }
-      >
-        {text}
-      </motion.p>
+      <div
+      
+  className={
+    isEven
+      ? "order-2 md:order-2 text-lg md:text-xl lg:text-2xl relative"
+      : "order-1 md:order-1 md:col-start-1 md:col-end-2 text-lg md:text-xl lg:text-2xl relative"
+  }
+>
+  <motion.p
+    ref={scope}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+  >
+    {text}
+  </motion.p>
+  <motion.span
+    initial={{ width: 0 }}
+    animate={inView ? { width: "50%" } : { width: 0 }}
+    transition={{ duration: 0.9, ease: "easeInOut" }}
+    className="mt-2 block h-1 bg-[#9EBF0B] mx-auto"
+  ></motion.span>
+</div>
     </div>
   );
 }
@@ -146,6 +163,8 @@ export default function CourseDetails({ params }: CourseDetailsProps) {
     }
   }, [introInView, introTextEntrance]);
 
+  
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* -------------------------
@@ -171,6 +190,12 @@ export default function CourseDetails({ params }: CourseDetailsProps) {
         >
           {customIntroText}
         </motion.p>
+        <motion.span
+      initial={{ width: 0 }}
+      animate={introInView ? { width: "70%" } : {}}
+      transition={{ duration: 1.2, ease: "easeInOut" }}
+      className="mt-5 block h-1 bg-[#9EBF0B] mx-auto"
+    ></motion.span>
         </div>
 
         {/* Main image from projects array */}
@@ -181,6 +206,7 @@ export default function CourseDetails({ params }: CourseDetailsProps) {
           viewport={{ once: true, amount: 0.3 }} // triggers fade-in once image is ~30% visible
           transition={{ duration: 1.2 }}
         >
+           <div className="absolute bg-[#9EBF0B] w-full h-full rounded-lg left-[0.7rem] md:left-[1rem] lg:left-[2rem] -top-[0.5rem]"></div>
           <Image
             src={project.image}
             alt={`${project.name} image`}
@@ -191,8 +217,8 @@ export default function CourseDetails({ params }: CourseDetailsProps) {
               boxShadow: "rgba(0, 0, 0, 0.16) 0px 3.75px 7.5px, rgba(0, 0, 0, 0.23) 0px 3.75px 7.5px",
 
             }}
-            className="rounded-lg w-full h-[40rem] max-h-[80rem] lg:ml-12"
-            priority
+            className="relative rounded-lg w-full h-[40rem] max-h-[80rem] lg:ml-12"
+             priority
           />
         </motion.div>
       </div>
